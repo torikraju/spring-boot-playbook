@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testing_database
+    username: root
+    password: std123
+    tomcat.remove-abandoned-timeout: 60
+  jpa:
+    show-sql: false #To dump the queries to standard out
+    generate-ddl: true #For DDL generation
+    hibernate.ddl-auto: none #Values are none, validate, update, create, and create-drop
+    properties.hibernate.format_sql: false #To beautify or pretty print the SQL but takes up more screen space
+    properties.hibernate.use_sql_comments: false #Hibernate will put comments inside all generated SQL statements to hint what’s the generated SQL trying to do
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  hateoas:
+    use-hal-as-default-json-media-type: false
+
+
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+  pattern:
+    file: '%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n'
+    console: '%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n'
+  file:
+    name: ./logs/server.log
+  logback:
+    rollingpolicy:
+      max-file-size: 20MB
+
+
+

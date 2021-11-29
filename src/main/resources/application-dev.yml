@@ -8,7 +8,7 @@ spring:
   jpa:
     show-sql: false #To dump the queries to standard out
     generate-ddl: true #For DDL generation
-    hibernate.ddl-auto: none #Values are none, validate, update, create, and create-drop
+    hibernate.ddl-auto: update #Values are none, validate, update, create, and create-drop
     properties.hibernate.format_sql: false #To beautify or pretty print the SQL but takes up more screen space
     properties.hibernate.use_sql_comments: false #Hibernate will put comments inside all generated SQL statements to hint what’s the generated SQL trying to do
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

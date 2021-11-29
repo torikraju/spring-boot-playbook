@@ -1,5 +1,7 @@
-package com.self.learning.playbook.dto;
+package com.self.learning.playbook.dto.response;
 
+import com.self.learning.playbook.dto.CustomerDto;
+import com.self.learning.playbook.dto.ResponseDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.hateoas.PagedModel;

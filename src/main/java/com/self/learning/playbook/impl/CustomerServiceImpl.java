@@ -2,7 +2,7 @@ package com.self.learning.playbook.impl;
 
 import com.self.learning.playbook.constants.Status;
 import com.self.learning.playbook.dto.CustomerDto;
-import com.self.learning.playbook.dto.CustomerResponse;
+import com.self.learning.playbook.dto.response.CustomerResponse;
 import com.self.learning.playbook.entity.Customer;
 import com.self.learning.playbook.repository.CustomerRepository;
 import com.self.learning.playbook.service.CustomerService;

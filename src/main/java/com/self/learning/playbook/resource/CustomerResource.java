@@ -6,9 +6,14 @@ import com.self.learning.playbook.dto.response.CustomerAllResponse;
 import com.self.learning.playbook.dto.CustomerDto;
 import com.self.learning.playbook.dto.response.CustomerResponse;
 import com.self.learning.playbook.entity.Customer;
+import com.self.learning.playbook.event.CustomerRegistrationEvent;
+import com.self.learning.playbook.impl.CustomerServiceImpl;
 import com.self.learning.playbook.repository.CustomerRepository;
 import com.self.learning.playbook.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -26,10 +31,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerResource {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerResource.class);
+
 
     private final CustomerRepository customerRepository;
     private final CustomerModelAssembler customerModelAssembler;
     private final PagedResourcesAssembler<Customer> pagedResourcesAssembler;
+    private final ApplicationEventPublisher publisher;
 
     private final CustomerService customerService;
 
@@ -42,10 +50,12 @@ public class CustomerResource {
 
     @GetMapping("/all-customer-list")
     public ResponseEntity<CustomerAllResponse> getAllAlbums(Pageable pageable) {
+        LOGGER.info("fetching-all-customer");
         Page<Customer> allCustomer = customerRepository.findAll(pageable);
         PagedModel<CustomerDto> collModel = pagedResourcesAssembler.toModel(allCustomer, customerModelAssembler);
         CustomerAllResponse response = new CustomerAllResponse();
         response.setData(collModel);
+        publisher.publishEvent(new CustomerRegistrationEvent("test event"));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

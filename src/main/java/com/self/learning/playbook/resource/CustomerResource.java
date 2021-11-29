@@ -56,6 +56,7 @@ public class CustomerResource {
         CustomerAllResponse response = new CustomerAllResponse();
         response.setData(collModel);
         publisher.publishEvent(new CustomerRegistrationEvent("test event"));
+        LOGGER.info("finishing-fetching-all-customer");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

@@ -14,7 +14,12 @@ public class CustomerRegistrationEventListener {
     @Async
     @EventListener
     public void handleRegistration(CustomerRegistrationEvent event) {
-        LOGGER.info("Registration event got triggered for customer:: {}, Current Thread Name- {}", event.getName(), Thread.currentThread().getName());
+        try {
+            Thread.sleep(5000L);
+            LOGGER.info("Registration event got triggered for customer:: {}, Current Thread Name- {}", event.getName(), Thread.currentThread().getName());
+        } catch (InterruptedException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
 
 }
